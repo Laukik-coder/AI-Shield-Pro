@@ -4,6 +4,7 @@ import plotly.express as px
 import time
 from image_detector import detect_image
 from deepfake_detector import detect_fake_image
+from fake_news_detector import predict_news
 
 # ====================================
 # PAGE CONFIG
@@ -189,53 +190,20 @@ elif option == "📰 Fake News Detection":
 
     st.title("📰 AI Fake News Detector")
 
-    news = st.text_area("📝 Enter News Text")
+    news = st.text_area("Enter News Article")
 
-    if st.button("🚀 Analyze News"):
+    if st.button("Analyze News"):
 
-        with st.spinner("Analyzing with AI Engine..."):
-            time.sleep(2)
+        if news.strip() == "":
+            st.warning("Please enter news text.")
+        else:
 
-            fake_keywords = [
-                "shocking",
-                "secret",
-                "breaking",
-                "viral",
-                "100%",
-                "government exposed"
-            ]
+            prediction = predict_news(news)
 
-            score = 0
-
-            for word in fake_keywords:
-                if word.lower() in news.lower():
-                    score += 1
-
-            if score >= 2:
-
-                st.error("⚠️ News appears FAKE")
-
-                confidence = 85
-
-                st.progress(confidence)
-
-                st.metric(
-                    "Fake Probability",
-                    f"{confidence}%"
-                )
-
+            if prediction == "REAL":
+                st.success("✅ This News Appears Real")
             else:
-
-                st.success("✅ News appears REAL")
-
-                confidence = 35
-
-                st.progress(confidence)
-
-                st.metric(
-                    "Real Probability",
-                    f"{100-confidence}%"
-                )
+                st.error("⚠️ This News Appears Fake")
 
 # ====================================
 # IMAGE DETECTION
