@@ -74,6 +74,16 @@ Symbiosis Skills and Professional University
 
 ---
 
-## 📸 Screenshots
+## 📸 Project Screenshots
 
-(Add screenshots below)
+### 🏠 Home Page
+![Home](Home.png)
+
+### 📰 Fake News Detection
+![Fake News](fake_news.png)
+
+### 🖼️ Image Detection
+![Image Detection](image_detection.1.png)
+
+### 🤖 AI Generated Detection
+![AI Detection](ai_detection.png)
